@@ -22,7 +22,6 @@ let triangle = [
 ]
 
 
-
 //array with the values of X values in the inner arrays for the largest sum
 let grandPath = sumGrandPath(triangle)
 
@@ -33,24 +32,21 @@ for(let i=0; i<triangle.length; i++){
 }
 console.log(finalSum)
 
-//function that figures out path depending on largest sum of sequnial 6 element triangles
+//function that figures out path depending on largest sum of sequencial smaller triangles (6 elements)
 function sumGrandPath(triangle){
   let grandPath = []
   let localX = 0 //defined outside because it will change depending of the sum result
   for (let localY=0; localY<triangle.length-2; localY+=2){ //sequentially, jump 2 to start a new small triangle
     //small 6 triangle
     let smallLocal = littleArray(localY,localX,triangle)
-    // console.log(smallLocal)
+    //path of smaller triangle
     let localPath= sumLittle(smallLocal, localX)
-    // console.log(localPath)
-    //append local path to big picture
 
-    //remove last element so that we don't repeat (where our new path starts)
+    //remove last element so that we don't repeat the last one when we add (where our new path starts)
     grandPath.pop()
-    for (let i=0;i<localPath.length;i++){
-      //remove last element that otherwise would be repeated
 
-      //add all
+    //append local path to big picture
+    for (let i=0;i<localPath.length;i++){
       grandPath.push(localPath[i])
     }
 
@@ -61,8 +57,8 @@ function sumGrandPath(triangle){
 }
 
 
-
 //function that creates little triangle array of 6 elements
+//take a position in the array and the big triangle (array of arrays) as arguments
 function littleArray(y, x, bigArr){
   let res = []
   let stepArray = [bigArr[y][x]]
@@ -87,7 +83,7 @@ function littleArray(y, x, bigArr){
     return res
 }
 
-//function that calculates larger sum withing the little array and gives index back.
+//function that calculates larger sum withing the little array and returns path
 //startX defines our starting X reference point in the largest triangle,
 // so that it returns an abolute path in relation to the largest triangle
 function sumLittle(arrArr,startX){
