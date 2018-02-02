@@ -1,7 +1,6 @@
 //We can reduce the complexity of the problem by thinking the bigger triangle as a succession of triangles with 6 elements
 //The route taken will be decided by which combination of the elements of each triangle gives the larger sum
 
-
 //Array with out biiger triangle
 let triangle = [
                             [75],
@@ -25,7 +24,7 @@ let triangle = [
 //array with the values of X values in the inner arrays for the largest sum
 let grandPath = sumGrandPath(triangle)
 
-//add everything from the path we have.
+//add everything from the triangle that's in the path.
 let finalSum = 0
 for(let i=0; i<triangle.length; i++){
   finalSum += triangle[i][grandPath[i]]
@@ -83,9 +82,9 @@ function littleArray(y, x, bigArr){
     return res
 }
 
-//function that calculates larger sum withing the little array and returns path
+//function that calculates larger sum within the little array and returns path
 //startX defines our starting X reference point in the largest triangle,
-// so that it returns an abolute path in relation to the largest triangle
+//so that it returns an abolute path in relation to the largest triangle
 function sumLittle(arrArr,startX){
   let largest =0
   let first = arrArr[0][0]
